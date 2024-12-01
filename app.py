@@ -3,7 +3,6 @@ import sqlite3
 
 app = Flask(__name__)
 
-# Utworzenie przykładowej bazy danych
 def init_db():
     conn = sqlite3.connect("example.db")
     cursor = conn.cursor()
@@ -33,7 +32,6 @@ def home():
         form_type = request.form.get('form_type', '')
 
         if form_type == "vulnerable":
-            # Obsługa podatnego formularza
             conn = sqlite3.connect("example.db")
             cursor = conn.cursor()
             query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
@@ -47,7 +45,6 @@ def home():
                 vulnerable_response = "Invalid credentials"
 
         elif form_type == "secure":
-            # Obsługa zabezpieczonego formularza
             conn = sqlite3.connect("example.db")
             cursor = conn.cursor()
             query = "SELECT * FROM users WHERE username = ? AND password = ?"
