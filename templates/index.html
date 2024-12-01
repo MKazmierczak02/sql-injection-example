@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test SQL Injection</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f9;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      .container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 800px;
+        margin: 0 auto;
+        gap: 20px;
+      }
+      .form-card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        width: 45%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .form-card h2 {
+        margin-bottom: 15px;
+        font-size: 1.2em;
+        color: #555;
+      }
+      .form-card label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 0.9em;
+      }
+      .form-card input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .form-card button {
+        width: 100%;
+        padding: 10px;
+        background-color: #333333;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        font-size: 1em;
+        cursor: pointer;
+      }
+      .form-card button:hover {
+        background-color: #444444;
+      }
+      .response {
+        margin-top: 15px;
+        font-size: 0.9em;
+        color: #333;
+        padding: 10px;
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Test SQL Injection</h1>
+    <div class="container">
+      <div class="form-card">
+        <h2>Vulnerable Login</h2>
+        <form method="post">
+          <input type="hidden" name="form_type" value="vulnerable" />
+          <label>Username</label>
+          <input type="text" name="username" required />
+          <label>Password</label>
+          <input type="password" name="password" required />
+          <button type="submit">Login</button>
+        </form>
+        {% if vulnerable_response %}
+        <div class="response">
+          <strong>Response:</strong> {{ vulnerable_response }}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="form-card">
+        <h2>Secure Login</h2>
+        <form method="post">
+          <input type="hidden" name="form_type" value="secure" />
+          <label>Username</label>
+          <input type="text" name="username" required />
+          <label>Password</label>
+          <input type="password" name="password" required />
+          <button type="submit">Login</button>
+        </form>
+        {% if secure_response %}
+        <div class="response">
+          <strong>Response:</strong> {{ secure_response }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
